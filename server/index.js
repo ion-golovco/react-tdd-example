@@ -1,14 +1,12 @@
 import express  from "express";
 
 const app = express();
-
-app.post('/get-file-from-user', (req,res)=>{
-   res.json('fas');
-})
-
-app.listen(
-    5000, ()=>{
-        console.log('App listening')
-    }
-)
-
+  
+app.post("/post", (req, res) => {
+    console.log("Connected to React");
+    res.redirect("/");
+  });
+  
+const PORT = process.env.PORT || 5000;
+  
+app.listen(PORT, console.log(`Server started on port ${PORT}`));

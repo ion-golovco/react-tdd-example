@@ -24,7 +24,7 @@ function App() {
     };
     interval = setInterval(() => {
       updateCounter();
-    }, 50);
+    }, 100);
     return () => {
       clearInterval(interval);
     };
@@ -37,6 +37,11 @@ function App() {
 
   return (
     <Col>
+      Some weird application.js 
+      <form action="../../post" method="post" 
+              className="form">
+          <button type="submit">Connected?</button>
+        </form>
       <Row className="App">
         {Data.val1.map((n) => {
           return createBadge(n);

@@ -1,26 +1,36 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
+import Box from "./Box";
 
-test('renders App', () => {
-  let app = render(<App />);
-  expect(app);
+test("render a box in <app />", () => {
+    let {container} = render(<App/>)
+
+    let box = container.getElementsByClassName("box")
+  expect(box);
 });
 
-test('checks for white space', () => {
+test("header contains text", () => {
   render(<App />);
-  const whiteSpace = screen.getByText(/ /g);
-  expect(whiteSpace);
+  let text = screen.getByText(/Awesome app/);
+  expect(text);
 });
 
-test('checks header', () => {
-  render(<App />);
-  const header = screen.getByText(/Some weird application.js/);
-  expect(header);
+test("Box has value", () => {
+    render(<Box text="1"/>)
+    let box = screen.getByText("1")
+    expect(box)
 });
+test("multiple boxes in <app/> from data, and they have values",()=>{
+    let {container} = render(<App/>)
+    let boxes = container.getElementsByClassName("box")
+    expect(boxes.length).toBe(5);
+    
+    for(let box of boxes){
+        console.log(box.innerHTML)
+    }
+    
+    
+   
+   
+})
 
-test('looks for numbers', () => {
-  render(<App />);
-  const numbers = screen.getAllByText(/\d+/i);
-  console.log(numbers[0])
-  expect(numbers==0);
-});
